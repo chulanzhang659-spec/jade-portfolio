@@ -133,8 +133,8 @@ window.PORTFOLIO = {
       "hint": "人物与风格、趋势与生活叙事",
       "projects": [
         {
-          "title": "GUCCI 拍豪门大戏",
-          "description": "38位戏精上演百年风云",
+          "title": "GUCCI拍豪门大戏，38位戏精上演百年风云",
+          "description": "",
           "url": "http://xhslink.com/o/62M32HuiY6P",
           "group": "人物与时装",
           "excerpt": "这是GUCCI最新发布的叙事作品《虎》。演技派众星云集，通过虚构角色——古驰家族的一天，窥见腥风血雨的名利场，以及在时尚界执掌庞然大物的他们真实的内心世界。",
@@ -143,8 +143,8 @@ window.PORTFOLIO = {
           "imageAlt": "GUCCI 拍豪门大戏原视频画面"
         },
         {
-          "title": "拜见朋克女王",
-          "description": "背叛传统，特立独行",
+          "title": "拜见朋克女王：背叛传统，特立独行",
+          "description": "",
           "url": "http://xhslink.com/o/AYdYeX3JiKV",
           "group": "人物与时装",
           "excerpt": "你可能没看过这部作品，但大概率见过她的女主角。黑色皮衣、烟熏妆容、铆钉配饰，散发着朋克女王的强大气场。",
@@ -153,8 +153,8 @@ window.PORTFOLIO = {
           "imageAlt": "拜见朋克女王原视频画面"
         },
         {
-          "title": "引领高智女性潮流",
-          "description": "大家为什么都爱它",
+          "title": "引领高智女性潮流，大家为什么都爱它",
+          "description": "",
           "url": "http://xhslink.com/o/1lDzrzEdlQX",
           "group": "趋势与生活",
           "excerpt": "成为百年世家继承人是什么体验？……她是现实版《绯闻女孩》里的Queen B，家族经营着驰名全球的时尚品牌珑骧Longchamp。",
@@ -164,7 +164,7 @@ window.PORTFOLIO = {
         },
         {
           "title": "快时代里的“慢”人",
-          "description": "时尚编辑与内容写作",
+          "description": "",
           "url": "http://xhslink.com/o/7qKKb0aawJc",
           "group": "趋势与生活",
           "excerpt": "《给阿嬷的情书》大家为什么喜欢它？答案在于那份“细火慢煨”的真诚。花两年时间做田野调查，走进潮汕侨乡老街，采访了上百位真正经历过“下南洋”年代的老一辈人，听他们讲侨批的故事。",

@@ -78,7 +78,7 @@
       ${p.image?`<img src="${p.image}" alt="${escape(p.imageAlt || (p.title+' '+(p.subtitle||'')+' 原稿封面'))}" loading="lazy">`:''}
       <p class="project-number">${String(i+1).padStart(2,'0')} / ${p.pdf?'PROJECT PROPOSAL':'SELECTED WORK'}</p>
       <h3>${escape(p.title)}</h3>${p.subtitle?`<p class="subtitle">${escape(p.subtitle)}</p>`:''}
-      <p class="description">${escape(p.description)}</p>${p.excerpt?`<div class="excerpt-label">${escape(p.excerptLabel)}</div><blockquote class="editorial-excerpt">${escape(p.excerpt)}</blockquote>`:''}${p.tags?`<p class="tags">${p.tags}</p>`:''}
+      ${p.description?`<p class="description">${escape(p.description)}</p>`:''}${p.excerpt?`<div class="excerpt-label">${escape(p.excerptLabel)}</div><blockquote class="editorial-excerpt">${escape(p.excerpt)}</blockquote>`:''}${p.tags?`<p class="tags">${p.tags}</p>`:''}
       <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.pdf}" download="${escape(p.title)}.pdf">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}</div>
     </article>`;
   }
