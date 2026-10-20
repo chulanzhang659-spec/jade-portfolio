@@ -21,6 +21,7 @@
       <h3>CONTACT</h3><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
       <dt>Phone</dt><dd><a href="tel:19145689058">19145689058</a></dd></dl>
       <a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
+      <a class="cv-download portfolio-download" href="jade-portfolio.pdf" download="JadeZheng_ portfolio.pdf"><span>PORTFOLIO ↓</span><small>下载完整作品集 · PDF</small></a>
     </aside>`;
   const copies = [...document.querySelectorAll('.en-copy')];
   const maxCopy = copies.reduce((n,e) => n + e.dataset.copy.length, 0);
@@ -73,6 +74,7 @@
   document.querySelectorAll('.enter').forEach(b=>b.onclick=()=>{if(view==='home')openEdition();else paper.querySelector('.read-link').focus()});
   function projectHTML(p,i) {
     return `<article class="project">
+      ${p.screenshot?`<a class="profile-capture" href="${p.screenshot}" target="_blank" rel="noopener" aria-label="查看${escape(p.title)}主页截图"><img src="${p.screenshot}" alt="${escape(p.title)}小红书主页实景截图"></a><p class="capture-caption">PROFILE / 账号主页 · 点击查看全图</p>`:''}
       ${p.image?`<img src="${p.image}" alt="${escape(p.title+' '+p.subtitle)} 原稿封面" loading="lazy">`:''}
       <p class="project-number">${String(i+1).padStart(2,'0')} / ${p.pdf?'PROJECT PROPOSAL':'SELECTED WORK'}</p>
       <h3>${escape(p.title)}</h3>${p.subtitle?`<p class="subtitle">${escape(p.subtitle)}</p>`:''}

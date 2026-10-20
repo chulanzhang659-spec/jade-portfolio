@@ -237,3 +237,10 @@ body:not([data-view=home]) #paper-anchor{transition:none;transform:none}
   .edition-projects .project{padding-bottom:0}
   .project img{height:18vh;max-height:180px}
 }
+
+/* Real account screenshots, with the site's navigation cropped only in layout. */
+.profile-capture{display:block;position:relative;overflow:hidden;aspect-ratio:1.2;background:#0b0b0b;border:1px solid var(--rule)}
+body:not([data-view=home]) .project .profile-capture img{position:absolute;max-height:none;width:140%;height:auto;aspect-ratio:auto;left:-37%;top:-12%;filter:saturate(.65);mix-blend-mode:normal}
+.capture-caption{font:9px/1.5 var(--cn);color:var(--muted);margin:7px 0 10px}
+.portfolio-download{margin-top:12px}
+@media(min-width:701px){.category[data-category=social] .profile-capture{max-height:34vh;flex-shrink:0}.portfolio-download span{font-size:9px}}

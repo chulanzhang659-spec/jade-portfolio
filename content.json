@@ -104,19 +104,23 @@
           "title": "ELFU",
           "description": "家居服品牌｜品牌整体运营。",
           "url": "https://xhslink.cn/o/AKoo5okHUYQ",
-          "group": "品牌账号"
+          "group": "品牌账号",
+          "screenshot": "social-elfu.jpg"
         },
         {
           "title": "LadyS Elite 慕裁",
           "description": "女士西装品牌｜品牌整体运营。",
           "url": "https://xhslink.cn/o/8p0kWZlNBiN",
-          "group": "品牌账号"
+          "group": "品牌账号",
+          "screenshot": "social-lady.jpg"
         },
         {
           "title": "个人博主项目",
           "description": "内容策划与账号运营。",
           "url": "https://xhslink.cn/o/5LS7J8zegow",
-          "group": "个人表达"
+          "group": "个人表达",
+          "screenshot": "social-ann.jpg",
+          "subtitle": "Ann的安"
         }
       ]
     },
