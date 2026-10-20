@@ -1,0 +1,200 @@
+window.PORTFOLIO = {
+  "categories": [
+    {
+      "id": "brand",
+      "title": "Brand Stories",
+      "zh": "品牌故事",
+      "en": "Narratives for people, places and products.",
+      "translation": "为人物、地方与产品讲述故事。",
+      "hint": "品牌叙事、产品文案与溯源内容",
+      "projects": [
+        {
+          "title": "MOUTION",
+          "subtitle": "风把我们变轻",
+          "group": "品牌概念与叙事",
+          "description": "以风串联衣服、身体与情绪。从「风先碰到衣服」到「身体开始松开」，再到「笑开始发生」，通过三个章节展开品牌影片的叙事。",
+          "tags": "创意阐述 / 分镜脚本 / 影调与音乐",
+          "pdf": "moution.pdf",
+          "image": "moution.png"
+        },
+        {
+          "title": "Bonjour × Herb Live",
+          "subtitle": "来自山茶花的幸福感",
+          "group": "品牌概念与叙事",
+          "description": "围绕山茶花、巴黎与调香师，以感官画面与品牌旁白组织故事，将品牌概念展开为影调参考与镜头脚本。",
+          "tags": "创意概念 / 旁白 / 分镜",
+          "pdf": "bonjour.pdf",
+          "image": "bonjour.png"
+        },
+        {
+          "title": "李佳琦 × 科兰黎",
+          "subtitle": "北纬78°极地琦旅",
+          "group": "品牌溯源",
+          "description": "以四站式旅程串联极地探索、科研与产品故事，用任务卡与互动环节组织内容路径，让溯源故事逐步展开。",
+          "tags": "内容路径 / 互动机制 / 分镜",
+          "pdf": "galenic.pdf",
+          "image": "galenic.png"
+        },
+        {
+          "title": "疏时",
+          "description": "女装品牌文案、产品内容策划及小红书内容。",
+          "url": "https://xhslink.cn/o/9FEuetal0eo",
+          "group": "品牌与产品文案"
+        },
+        {
+          "title": "WANA TRY",
+          "description": "女性时尚品牌集合与穿搭平台的产品文案。",
+          "url": "https://xhslink.cn/o/lgdfS2DeTC",
+          "group": "品牌与产品文案"
+        }
+      ]
+    },
+    {
+      "id": "film",
+      "title": "Film & Interviews",
+      "zh": "影像与访谈",
+      "en": "Conversations, short films and creative documentaries.",
+      "translation": "对话、短片与创意纪录。",
+      "hint": "视频脚本、人物深访与秀场影像",
+      "projects": [
+        {
+          "title": "HOKA × 恩利",
+          "subtitle": "人物短片与脚本",
+          "group": "人物与生活",
+          "description": "以美式复古的生活氛围串联居家、街道、咖啡馆与买手店场景，组织 VLOG、对白与镜头内容。",
+          "tags": "人物内容 / 场景设计 / 视频脚本",
+          "pdf": "hoka.pdf",
+          "image": "hoka.png"
+        },
+        {
+          "title": "IRO TALK",
+          "subtitle": "声音、城市与自我",
+          "group": "人物深访",
+          "description": "围绕 TOM 与 SUNK 的音乐、城市经验与个人表达展开采访问题，配合镜头参考与长短内容规划。",
+          "tags": "采访方案 / 分镜设计 / 内容策划",
+          "pdf": "iro.pdf",
+          "image": "iro.png"
+        },
+        {
+          "title": "BOSIDENG Paris",
+          "subtitle": "Like Puff, Like Dance",
+          "group": "秀场影像与执行",
+          "description": "围绕巴黎秀场影像组织人物短片、试装与秀场记录，将创意表达衔接到镜头规划与内容交付。",
+          "tags": "影像方案 / 拍摄规划 / 整体执行",
+          "pdf": "bosideng.pdf",
+          "image": "bosideng.png"
+        },
+        {
+          "title": "IRO",
+          "description": "视频内容策划、分镜设计及采访方案的作品入口。",
+          "url": "https://xhslink.cn/o/1pGHmU9IGdH",
+          "group": "相关作品"
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Social & Content",
+      "zh": "账号运营",
+      "en": "Brand accounts & personal expression.",
+      "translation": "品牌账号与个人表达",
+      "hint": "在持续的内容更新中",
+      "projects": [
+        {
+          "title": "ELFU",
+          "description": "家居服品牌｜品牌整体运营。",
+          "url": "https://xhslink.cn/o/AKoo5okHUYQ",
+          "group": "品牌账号"
+        },
+        {
+          "title": "LadyS Elite 慕裁",
+          "description": "女士西装品牌｜品牌整体运营。",
+          "url": "https://xhslink.cn/o/8p0kWZlNBiN",
+          "group": "品牌账号"
+        },
+        {
+          "title": "个人博主项目",
+          "description": "内容策划与账号运营。",
+          "url": "https://xhslink.cn/o/5LS7J8zegow",
+          "group": "个人表达"
+        }
+      ]
+    },
+    {
+      "id": "fashion",
+      "title": "Fashion Editorial",
+      "zh": "时尚编辑",
+      "en": "Visual stories at the intersection of style and culture.",
+      "translation": "在风格与文化的交汇处，讲述视觉故事。",
+      "hint": "人物与风格、趋势与生活叙事",
+      "projects": [
+        {
+          "title": "GUCCI 拍豪门大戏",
+          "description": "38位戏精上演百年风云",
+          "url": "http://xhslink.com/o/1BLSdkrZUNU",
+          "group": "人物与时装"
+        },
+        {
+          "title": "拜见朋克女王",
+          "description": "背叛传统，特立独行",
+          "url": "http://xhslink.com/o/4wl75Czj6jb",
+          "group": "人物与时装"
+        },
+        {
+          "title": "引领高智女性潮流",
+          "description": "大家为什么都爱它",
+          "url": "http://xhslink.com/o/2J9It60yu8S",
+          "group": "趋势与生活"
+        },
+        {
+          "title": "快时代里的“慢”人",
+          "description": "时尚编辑与内容写作",
+          "url": "https://xhslink.cn/o/9Q4IDqOCsg8",
+          "group": "趋势与生活"
+        }
+      ],
+      "archive": [
+        {
+          "title": "微信作品 01",
+          "url": "https://mp.weixin.qq.com/s/_ZXbtuIQXTY_sVYR4Of7zg"
+        },
+        {
+          "title": "微信作品 02",
+          "url": "https://mp.weixin.qq.com/s/V2J23TUm0CPF8cP_COggaA"
+        },
+        {
+          "title": "微信作品 03",
+          "url": "https://mp.weixin.qq.com/s/aDEMLRdjvTRewDxih5TUPw"
+        },
+        {
+          "title": "微信作品 04",
+          "url": "https://mp.weixin.qq.com/s/uAIlTLv4WqCBe4eC8HQbdA"
+        },
+        {
+          "title": "微信作品 05",
+          "url": "https://mp.weixin.qq.com/s/laGz80w_GYcMkfNyssELYg"
+        },
+        {
+          "title": "微信作品 06",
+          "url": "https://mp.weixin.qq.com/s/IVediD1qAXPGo3grtsSdkg"
+        },
+        {
+          "title": "微信作品 07",
+          "url": "https://mp.weixin.qq.com/s/c2CiK7_x0kuaQMm_dt_wNQ"
+        },
+        {
+          "title": "微信作品 08",
+          "url": "https://mp.weixin.qq.com/s/IIbUiyglH4Ibkf0H4xYJsw"
+        },
+        {
+          "title": "微信作品 09",
+          "url": "https://mp.weixin.qq.com/s/v3a01ci0IDvOzQ9G4U9NDw"
+        },
+        {
+          "title": "微信作品 10",
+          "url": "https://mp.weixin.qq.com/s/tbRfhlWSHpGoseHbnyjfug"
+        }
+      ]
+    }
+  ]
+};
