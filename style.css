@@ -248,3 +248,20 @@ body:not([data-view=home]) .project .profile-capture img{position:absolute;max-h
 .excerpt-label{font:9px var(--cn);letter-spacing:.08em;border-top:1px solid var(--rule);padding-top:10px;margin-top:12px;color:var(--muted)}
 .editorial-excerpt{font:12px/1.9 var(--cn);margin:10px 0 14px;text-align:justify}
 @media(min-width:701px){.category[data-category=fashion] .editorial-excerpt{font-size:11px;line-height:1.8;margin:7px 0 5px}.category[data-category=fashion] .project img{height:13vh}.category[data-category=fashion] .project h3{font-size:15px}}
+/* Portrait homepage: one shared photographic coordinate system for every key. */
+.home-mobile-print{display:none}
+@media(max-width:700px){
+  #home-artboard{top:auto;bottom:0;transform:translateX(-50%) scale(var(--scene-scale));transform-origin:50% 100%}
+  .home-paper-plane{transform:matrix(1,-.083,.23,1,178,-330);height:1500px}
+  #home-stock{height:1500px}
+  #home-stock h1{left:325px;width:550px;font-size:32px;letter-spacing:.045em;top:40px}
+  #home-lines,.home-original-portrait{display:none}
+  .home-mobile-print{display:block;position:absolute;left:340px;top:107px;width:520px;transition:opacity .4s}
+  .home-mobile-print p{margin:0;font:21px/1.5 var(--mono);transition:opacity .25s}
+  .home-mobile-print small{display:block;font:17px/1.8 var(--cn);margin-top:5px}
+  .home-mobile-print .mobile-edition{font-size:13px;letter-spacing:.15em;border-top:1px solid #aaa69d;padding-top:15px;margin-bottom:34px}
+  .home-mobile-print>div{display:grid;grid-template-columns:1fr 1fr;gap:42px 20px}
+  .home-mobile-print .mobile-open{margin-top:58px;border-top:1px solid #aaa69d;padding-top:20px;letter-spacing:.05em}
+  body[data-view=home] .toolbar{top:max(20px,env(safe-area-inset-top));right:20px}
+}
+
