@@ -1,4 +1,4 @@
-// A single continuous texture, never duplicated key cutouts.
+// Rigid full-key compositing: erase the old silhouette, then move cap + sidewall together.
 window.createKeyboardSurface = (image, keys, reduced) => {
   const canvas=document.createElement('canvas');
   canvas.width=1672;canvas.height=941;
@@ -13,15 +13,27 @@ window.createKeyboardSurface = (image, keys, reduced) => {
   gl.attachShader(program,shader(gl.VERTEX_SHADER,'attribute vec2 p;varying vec2 uv;void main(){uv=vec2((p.x+1.)*.5,(1.-p.y)*.5);gl_Position=vec4(p,0.,1.);}'));
   gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`
     precision highp float;varying vec2 uv;uniform sampler2D photo;uniform vec3 keys[48];
+    float silhouette(vec2 d){
+      d.y-=clamp(d.y,0.,16.);
+      return 1.-smoothstep(.96,1.,length(d/vec2(42.,23.)));
+    }
     void main(){
-      vec2 pixel=uv*vec2(1672.,941.);float offset=0.;
+      vec2 size=vec2(1672.,941.),pixel=uv*size;
+      vec4 color=texture2D(photo,uv);
       for(int i=0;i<48;i++){
-        // Compact per-key support: zero before the neighbouring row or key begins.
-        vec2 d=(pixel-keys[i].xy-vec2(0.,5.))/vec2(40.,29.);
-        float influence=1.-smoothstep(.46,1.,length(d));
-        offset+=keys[i].z*influence;
+        float travel=-keys[i].z;
+        vec2 d=pixel-keys[i].xy;
+        if(travel>.01 && abs(d.x)<49. && d.y>-25. && d.y<49.){
+          float oldMask=silhouette(d);
+          float movedMask=silhouette(d-vec2(0.,travel));
+          vec3 well=(texture2D(photo,(keys[i].xy+vec2(-49.,10.))/size).rgb+
+                     texture2D(photo,(keys[i].xy+vec2(49.,10.))/size).rgb)*.36;
+          color.rgb=mix(color.rgb,well,oldMask*(1.-movedMask));
+          vec4 wholeKey=texture2D(photo,(pixel-vec2(0.,travel))/size);
+          color=mix(color,wholeKey,movedMask);
+        }
       }
-      gl_FragColor=texture2D(photo,(pixel+vec2(0.,offset))/vec2(1672.,941.));
+      gl_FragColor=color;
     }`));
   gl.linkProgram(program);
   if(!gl.getProgramParameter(program,gl.LINK_STATUS))return;

@@ -20,6 +20,7 @@
       <img src="jade-original.jpg" class="portrait" alt="Jade 的原始肖像照片，仅作复古调色">
       <h3>CONTACT</h3><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
       <dt>Phone</dt><dd><a href="tel:19145689058">19145689058</a></dd></dl>
+      <a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
     </aside>`;
   const copies = [...document.querySelectorAll('.en-copy')];
   const maxCopy = copies.reduce((n,e) => n + e.dataset.copy.length, 0);
@@ -61,14 +62,11 @@
     busy=true;
     setView('directory');history.pushState({view:'directory'},'', '#directory');
     window.scrollTo({top:0,behavior:'instant'});
-    if(!reduced){
-      document.body.classList.add('opening-paper');
-      await paper.animate([
-        {transform:'perspective(1600px) rotateY(-100deg)',filter:'brightness(.72)'},
-        {transform:'perspective(1600px) rotateY(-45deg)',filter:'brightness(.9)',offset:.55},
-        {transform:'perspective(1600px) rotateY(0deg)',filter:'brightness(1)'}
-      ],{duration:2200,easing:'cubic-bezier(.35,0,.2,1)'}).finished;
-      document.body.classList.remove('opening-paper');
+    if(!reduced) {
+      const opening=turnSheet(paper, paper.getBoundingClientRect(), true);
+      paper.style.visibility='hidden';
+      await opening;
+      paper.style.removeProperty('visibility');
     }
     busy=false;
   }
@@ -79,71 +77,80 @@
       <p class="project-number">${String(i+1).padStart(2,'0')} / ${p.pdf?'PROJECT PROPOSAL':'SELECTED WORK'}</p>
       <h3>${escape(p.title)}</h3>${p.subtitle?`<p class="subtitle">${escape(p.subtitle)}</p>`:''}
       <p class="description">${escape(p.description)}</p>${p.tags?`<p class="tags">${p.tags}</p>`:''}
-      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}">在线阅读 ↗</button><a href="${p.pdf}" download="${escape(p.title)}.pdf">下载 PDF ↓</a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">阅读原文 ↗</a>`}</div>
+      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.pdf}" download="${escape(p.title)}.pdf">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}</div>
     </article>`;
   }
   function renderCategory(id) {
     const c=cats.find(c=>c.id===id);if(!c)return false;
-    const groups=[...new Set(c.projects.map(p=>p.group))];
+    const featured=c.projects.filter(p=>p.pdf), related=c.projects.filter(p=>!p.pdf);
     category.dataset.category=id;
     category.innerHTML=`<header class="category-header"><span class="mini-brand">JADE’S PORTFOLIO</span><h1 tabindex="-1">${escape(c.title)}</h1><p>${c.zh}</p><div class="category-deck">${c.translation}</div></header>`+
-      groups.map(g=>`<section class="project-group"><h2 class="group-label">${g}</h2><div class="projects">${c.projects.filter(p=>p.group===g).map(p=>projectHTML(p,c.projects.indexOf(p))).join('')}</div></section>`).join('')+
-      (c.archive?`<section class="project-group"><h2 class="group-label">微信公众号作品</h2><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title} ↗</a>`).join('')}</div></section>`:'')+
+      `<div class="edition-projects">${(featured.length?featured:related).map((p,i)=>projectHTML(p,i)).join('')}</div>`+
+      (featured.length&&related.length?`<section class="related-strip"><h2 class="group-label">RELATED WORK<small>相关作品</small></h2>${related.map(p=>`<a href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${escape(p.title)}</strong><span>${escape(p.description)}</span><small>READ MORE ↗ / 阅读原文</small></a>`).join('')}</section>`:'')+
+      (c.archive?`<section class="archive-strip"><h2 class="group-label">THE ARCHIVE<small>微信作品</small></h2><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title} ↗</a>`).join('')}</div></section>`:'')+
       `<footer class="paper-footer"><span>JADE’S PORTFOLIO · ${escape(c.title.toUpperCase())}</span><span>03 / ${c.zh}</span></footer>`;
     category.querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>openPDF(b.dataset.pdf,b.dataset.title,b));
     return true;
   }
+  // A continuous flexible sheet, pinned to its top edge. Reverse uses the same geometry.
+  async function turnSheet(source, rect, reverse=false) {
+    const frame=document.createElement('div');frame.className='fold-newspaper';
+    document.querySelector('#turn-layer').style.perspective=Math.max(2400,rect.height*4)+'px';
+    Object.assign(frame.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
+    const snapshot=source.cloneNode(true);
+    if(source.id==='paper-directory')snapshot.classList.add('directory-clone');
+    const count=40,sh=rect.height/count,strips=[];
+    function content(offset,back=false){
+      const c=snapshot.cloneNode(true);c.removeAttribute('id');c.hidden=false;c.inert=true;
+      c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+      c.querySelectorAll('img').forEach(e=>e.loading='eager');
+      Object.assign(c.style,{position:'absolute',top:-offset+'px',left:'0',width:rect.width+'px',
+        height:rect.height+'px',margin:'0',transform:'none',opacity:back?'.16':'1'});
+      return c;
+    }
+    for(let i=0;i<count;i++){
+      const strip=document.createElement('div');strip.className='fold-segment';
+      Object.assign(strip.style,{width:'100%',height:sh+.65+'px',left:'0',transformOrigin:'center top'});
+      const front=document.createElement('div'),rear=document.createElement('div');
+      front.className='fold-front';rear.className='fold-back';
+      front.append(content(i*sh));rear.append(content(i*sh,true));
+      strip.append(front,rear);frame.append(strip);strips.push(strip);
+    }
+    document.querySelector('#turn-layer').append(frame);
+    await new Promise(resolve=>{
+      const start=performance.now();
+      function step(now){
+        const raw=Math.min(1,(now-start)/2400),ease=raw*raw*(3-2*raw),p=reverse?1-ease:ease;
+        let y=0,z=0;
+        strips.forEach((strip,i)=>{
+          const u=(i+.5)/count;
+          // The free lower edge leads; the top remains fixed as curvature travels upward.
+          const a=Math.PI*p+Math.sin(Math.PI*p)*.68*Math.sin(u*Math.PI/2);
+          strip.style.top=y+'px';
+          strip.style.transform=`translateZ(${z}px) rotateX(${a}rad)`;
+          strip.style.setProperty('--fold-shade',String(Math.abs(Math.sin(a))*.2));
+          y+=sh*Math.cos(a);z+=sh*Math.sin(a);
+        });
+        if(raw<1)requestAnimationFrame(step);else{frame.remove();resolve()}
+      }requestAnimationFrame(step);
+    });
+  }
   async function flip(destination,reverse=false) {
     if(busy)return;busy=true;
+    window.scrollTo({top:0,behavior:'instant'});
     const source=view==='category'?category:paper;
-    const rect=source.getBoundingClientRect();
-    const snapshot=source.cloneNode(true);
+    const rect=source.getBoundingClientRect(),snapshot=source.cloneNode(true);
     if(source===paper)snapshot.classList.add('directory-clone');
     destination();
     if(!reduced){
       const target=view==='category'?category:view==='directory'?paper:null;
-      const targetCopy=target?.cloneNode(true);
-      if(target===paper)targetCopy.classList.add('directory-clone');
-      const frame=document.createElement('div');frame.className='fold-newspaper';
-      Object.assign(frame.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
-      const half=rect.width/2;
-      function content(copy,offset){
-        const c=copy.cloneNode(true);c.removeAttribute('id');c.hidden=false;c.inert=true;
-        c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
-        c.querySelectorAll('img').forEach(e=>e.loading='eager');
-        Object.assign(c.style,{position:'absolute',top:'0',left:-offset+'px',width:rect.width+'px',margin:'0',transform:'none'});
-        return c;
-      }
-      const stationary=document.createElement('div');stationary.className='fold-stationary';
-      Object.assign(stationary.style,{left:reverse?half+'px':'0',width:half+'px',height:'100%'});
-      stationary.append(content(snapshot,reverse?half:0));frame.append(stationary);
-      const strips=[],count=28,sw=half/count;
-      for(let i=0;i<count;i++){
-        const strip=document.createElement('div');strip.className='fold-segment';
-        Object.assign(strip.style,{width:sw+.6+'px',height:'100%',transformOrigin:reverse?'right top':'left top'});
-        const front=document.createElement('div'),rear=document.createElement('div');
-        front.className='fold-front';rear.className='fold-back';
-        front.append(content(snapshot,reverse?half-(i+1)*sw:half+i*sw));
-        if(targetCopy)rear.append(content(targetCopy,reverse?half+i*sw:half-(i+1)*sw));
-        strip.append(front,rear);frame.append(strip);strips.push(strip);
-      }
-      $('#turn-layer').append(frame);
-      await new Promise(resolve=>{
-        const start=performance.now();
-        function tick(now){
-          const raw=Math.min(1,(now-start)/2400),p=raw*raw*(3-2*raw);
-          let x=half,z=0;
-          strips.forEach((strip,i)=>{
-            const a=Math.PI*p+Math.sin(Math.PI*p)*.32*Math.sin(i/count*Math.PI);
-            const sign=reverse?1:-1;
-            strip.style.left=(reverse?x-sw:x)+'px';
-            strip.style.transform=`translateZ(${z}px) rotateY(${sign*a}rad)`;
-            strip.style.setProperty('--fold-shade',String(Math.sin(a)*.23));
-            x+=(reverse?-1:1)*sw*Math.cos(a);z+=sw*Math.sin(a);
-          });
-          if(raw<1)requestAnimationFrame(tick);else{frame.remove();resolve()}
-        }requestAnimationFrame(tick);
-      });
+      if(reverse&&target){
+        const under=document.createElement('div');under.className='turn-under';
+        Object.assign(under.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
+        snapshot.removeAttribute('id');snapshot.hidden=false;snapshot.inert=true;under.append(snapshot);
+        document.querySelector('#turn-layer').append(under);
+        await turnSheet(target,target.getBoundingClientRect(),true);under.remove();
+      }else await turnSheet(snapshot,rect,false);
     }
     busy=false;
     (view==='home'?document.querySelector('#home-stock'):view==='category'?category.querySelector('h1'):paper.querySelector('.read-link')).focus({preventScroll:true});
@@ -180,9 +187,9 @@
   addEventListener('popstate',()=>{
     if(reader.open)reader.close();
     const hash=location.hash.slice(1);
-    if(cats.some(c=>c.id===hash)){renderCategory(hash);setView('category')}
-    else setView(hash==='directory'?'directory':'home');
-    window.scrollTo(0,0);
+    const next=cats.some(c=>c.id===hash)?'category':hash==='directory'?'directory':'home';
+    const rank={home:0,directory:1,category:2};
+    flip(()=>{if(next==='category')renderCategory(hash);setView(next)},rank[next]<rank[view]);
   });
   const hash=location.hash.slice(1);
   if(cats.some(c=>c.id===hash)){renderCategory(hash);setView('category')}
