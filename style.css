@@ -265,3 +265,28 @@ body:not([data-view=home]) .project .profile-capture img{position:absolute;max-h
   body[data-view=home] .toolbar{top:max(20px,env(safe-area-inset-top));right:20px}
 }
 
+/* Keep article columns and the archive in separate, non-overlapping rows. */
+.archive-strip{align-items:flex-start;flex-shrink:0;margin-top:28px;padding-top:20px;gap:24px}
+.archive{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px 20px;flex:1;min-width:0}
+.archive a{display:flex;align-items:center;min-height:44px;padding:10px 12px;font-size:12px;line-height:1.5}
+.actions{flex-shrink:0;gap:20px;padding-top:16px}
+.actions a,.actions button{min-height:44px;padding:8px 10px;line-height:1.5}
+@media(min-width:701px){
+  body:not([data-view=home]) #stage:has(.category:not([hidden])){height:auto;min-height:100svh;overflow:visible}
+  body:not([data-view=home]) #paper-anchor:has(.category:not([hidden])){height:auto}
+  body:not([data-view=home]) .paper.category{height:auto;min-height:calc(100svh - 74px)}
+  .category .edition-projects{flex:1 0 auto;min-height:min-content}
+  .category .edition-projects .project{padding-bottom:12px}
+  .related-strip{flex-shrink:0}
+}
+@media(max-width:1000px) and (min-width:701px){.archive{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){
+  body:not([data-view=home]) .paper{border-left:0;border-right:0}
+  .column{border-left:0;border-right:0}
+  .column h2,.project h3,.group-label,.cv-download span{border-left:0!important;border-right:0!important}
+  .edition-projects .project{border-left:0;border-right:0}
+  .archive-strip{gap:16px;margin-top:24px;padding-top:20px}
+  .archive{flex-basis:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+  .archive a{font-size:12px;padding:10px 4px}
+}
+@media(max-width:700px){body:not([data-view=home]) .column h2{box-shadow:none}}
