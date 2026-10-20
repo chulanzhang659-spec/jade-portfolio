@@ -1,12 +1,15 @@
-JADE'S PORTFOLIO — 本地预览版
+JADE'S PORTFOLIO
 
-打开 index.html 即可浏览。请保持 assets、pdf、data.js、app.js、style.css 与 HTML 的相对位置。
-为保证浏览器 PDF 内嵌阅读稳定，建议通过本地 HTTP 服务器打开；也可使用“在新窗口阅读”或“下载 PDF”。
+Live website: https://chulanzhang659-spec.github.io/jade-portfolio/
 
-电脑：首页机身和机位固定，鼠标经过对应按键时下压，离开后回弹到原位；自动打字及实体键盘输入也仅下压后复位。自动打字与逐行送纸在 4.9 秒内完成。随时点击纸面进入目录；专栏悬停显示说明；点击翻阅进入作品。
-手机：目录可上下滚动；轻触专栏内容显示说明；“翻阅专栏”按钮直接进入。
-PDF：在线阅读与下载原稿；外部原文链接可能需要登录对应平台。
-照片：assets/jade-original.jpg 是用户原照片，不修改面部；网页仅应用灰度、轻微复古色调与对比度。
-未发布到 GitHub 或其他网站。
+Static HTML / CSS / JavaScript. No build step.
+Desktop: compact full-viewport newspaper directory and project editions.
+Mobile: readable vertical layout; scroll for the remaining projects.
+Navigation: 2.9-second traveling soft-curl paper turns, reverse to close.
+Home: fixed camera and machine, independent solid keys with exact 1234567890+- number row, 4.9-second paper feed.
+Original portrait preserved; only CSS grayscale and warm tone are applied.
+PDF originals support online reading and download. CV is available below Contact.
+Reduced-motion preference disables animated page turns.
 
-键盘采用单一连续纹理形变，移除重复贴片；不支持 WebGL 时显示固定原图。首页展开、专栏及返回采用 2.2 秒整纸翻动。系统减少动态效果模式下不播放动画。
+Local source keeps assets/ and pdf/ folders; GitHub distribution uses flat paths.
+HOKA original PDF is split into two transport chunks and reassembled byte-for-byte by large-pdf.js.

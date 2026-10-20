@@ -27,16 +27,17 @@ window.createJadeHome = ({onOpen,onTick,reduced}) => {
   });
   // Coordinates are measured on the unchanged 1672 × 941 approved reference.
   const positions=[
-    ['1234567890-=',[371,480,590,701,811,916,1020,1120,1227,1337,1432,1527],[746,730,712,699,689,677,663,648,636,626,615,602]],
-    ['QWERTYUIOP[]',[563,677,789,900,1010,1118,1224,1328,1428,1533,1634],[807,791,775,760,748,734,720,706,692,679,665]],
-    ["ASDFGHJKL;",[613,730,847,964,1077,1188,1296,1401,1504,1607],[896,876,859,842,827,812,799,784,769,752]],
-    ['CVBNM,',[956,1068,1178,1290,1400,1508],[938,925,909,894,877,859]]
+    ['1234567890+-',[371,485,599,713,827,941,1055,1169,1283,1397,1511,1625],[746,732,718,704,690,676,662,648,634,620,606,592]],
+    ['QWERTYUIOP[]',[433,542,651,760,869,978,1087,1196,1305,1414,1523,1632],[832,818,804,790,776,762,748,734,720,706,692,678]],
+    ["ASDFGHJKL;'",[493,605,717,829,941,1053,1165,1277,1389,1501,1613],[925,910,895,880,865,850,835,820,805,790,775]],
+    ['ZXCVBNM,./',[620,733,846,959,1072,1185,1298,1411,1524,1637],[1018,1003,988,973,958,943,928,913,898,883]]
   ];
   let active=false,raf=0,start=0,lastChar=-1,pausedAt=null;
   positions.forEach(([text,xs,ys])=>[...text].forEach((char,i)=>{
     if(xs[i]===undefined)return;
-    const b=document.createElement('button'),w=82,h=64,x=xs[i]-w/2,y=ys[i]-24;
+    const b=document.createElement('button'),w=84,h=64,x=xs[i]-w/2,y=ys[i]-24;
     b.className='reference-key';b.tabIndex=-1;b.dataset.key=char;b.setAttribute('aria-label','打印 '+char);
+    b.dataset.cx=xs[i];b.dataset.cy=ys[i];
     Object.assign(b.style,{left:x+'px',top:y+'px',width:w+'px',height:h+'px',
       backgroundPosition:`${-x}px ${-y}px`});
     b.addEventListener('pointerenter',()=>{b.classList.add('hovered');onTick()});

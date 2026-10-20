@@ -99,13 +99,13 @@
     Object.assign(frame.style,{left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px'});
     const snapshot=source.cloneNode(true);
     if(source.id==='paper-directory')snapshot.classList.add('directory-clone');
-    const count=40,sh=rect.height/count,strips=[];
+    const count=72,sh=rect.height/count,strips=[];
     function content(offset,back=false){
       const c=snapshot.cloneNode(true);c.removeAttribute('id');c.hidden=false;c.inert=true;
       c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
       c.querySelectorAll('img').forEach(e=>e.loading='eager');
-      Object.assign(c.style,{position:'absolute',top:-offset+'px',left:'0',width:rect.width+'px',
-        height:rect.height+'px',margin:'0',transform:'none',opacity:back?'.16':'1'});
+      Object.assign(c.style,{position:'absolute',top:-(back?rect.height-offset-sh:offset)+'px',left:'0',width:rect.width+'px',
+        height:rect.height+'px',margin:'0',transform:back?'scaleY(-1)':'none',opacity:back?'.12':'1'});
       return c;
     }
     for(let i=0;i<count;i++){
@@ -120,16 +120,25 @@
     await new Promise(resolve=>{
       const start=performance.now();
       function step(now){
-        const raw=Math.min(1,(now-start)/2400),ease=raw*raw*(3-2*raw),p=reverse?1-ease:ease;
-        let y=0,z=0;
+        const raw=Math.min(1,(now-start)/2900),ease=raw*raw*(3-2*raw),p=reverse?1-ease:ease;
+        const settle=Math.max(0,(p-.8)/.2);
+        const radius=Math.min(85,rect.height*.105)*(1-.8*settle*settle*(3-2*settle));
+        const bend=rect.height-(rect.height+radius*.3)*p;
+        // The bend travels from bottom to top. Everything ahead of it stays flat;
+        // the free part curls through a semicircle and lies over the back.
+        function point(s){
+          const d=s-bend;
+          if(d<=0)return {y:s,z:0,a:0};
+          if(d<Math.PI*radius){
+            const a=d/radius;return {y:bend+radius*Math.sin(a),z:radius*(1-Math.cos(a)),a};
+          }
+          return {y:bend-(d-Math.PI*radius),z:2*radius,a:Math.PI};
+        }
         strips.forEach((strip,i)=>{
-          const u=(i+.5)/count;
-          // The free lower edge leads; the top remains fixed as curvature travels upward.
-          const a=Math.PI*p+Math.sin(Math.PI*p)*.68*Math.sin(u*Math.PI/2);
-          strip.style.top=y+'px';
-          strip.style.transform=`translateZ(${z}px) rotateX(${a}rad)`;
+          const pos=point(i*sh),end=point((i+1)*sh),a=Math.atan2(end.z-pos.z,end.y-pos.y);
+          strip.style.top=pos.y+'px';
+          strip.style.transform=`translateZ(${pos.z}px) rotateX(${a}rad)`;
           strip.style.setProperty('--fold-shade',String(Math.abs(Math.sin(a))*.2));
-          y+=sh*Math.cos(a);z+=sh*Math.sin(a);
         });
         if(raw<1)requestAnimationFrame(step);else{frame.remove();resolve()}
       }requestAnimationFrame(step);
