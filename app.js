@@ -120,7 +120,7 @@
     await new Promise(resolve=>{
       const start=performance.now();
       function step(now){
-        const raw=Math.min(1,(now-start)/2900),ease=raw*raw*(3-2*raw),p=reverse?1-ease:ease;
+        const raw=Math.min(1,(now-start)/500),ease=raw*raw*(3-2*raw),p=reverse?1-ease:ease;
         const settle=Math.max(0,(p-.8)/.2);
         const radius=Math.min(85,rect.height*.105)*(1-.8*settle*settle*(3-2*settle));
         const bend=rect.height-(rect.height+radius*.3)*p;
