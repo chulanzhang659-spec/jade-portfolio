@@ -1,0 +1,7 @@
+*.pdf -text
+*.pptx -text
+*.xlsx -text
+*.png -text
+*.jpg -text
+*.part1 -text
+*.part2 -text

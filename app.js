@@ -185,6 +185,7 @@
   };
   function openPDF(url,title,trigger){
     lastFocus=trigger;$('#reader-title').textContent=title;
+    $('#reader-download').textContent=/\.(pptx|xlsx)$/i.test(trigger?.dataset.original||'')?'下载原稿 ↓':'下载 PDF ↓';
     $('#reader-download').href=trigger?.dataset.original||url;$('#reader-download').download=trigger?.dataset.originalName||(title+'.pdf');
     $('#reader-open').href=url;$('#pdf-frame').src=url+'#view=FitH';
     reader.showModal();document.body.style.overflow='hidden';$('#close-reader').focus();
