@@ -74,12 +74,12 @@
   document.querySelectorAll('.enter').forEach(b=>b.onclick=()=>{if(view==='home')openEdition();else paper.querySelector('.read-link').focus()});
   function projectHTML(p,i) {
     return `<article class="project">
-      ${p.screenshot?`<a class="profile-capture" href="${p.screenshot}" target="_blank" rel="noopener" aria-label="查看${escape(p.title)}主页截图"><img src="${p.screenshot}" alt="${escape(p.title)}小红书主页实景截图"></a><p class="capture-caption">PROFILE / 账号主页 · 点击查看全图</p>`:''}
-      ${p.image?`<img src="${p.image}" alt="${escape(p.imageAlt || (p.title+' '+(p.subtitle||'')+' 原稿封面'))}" loading="lazy">`:''}
+      ${p.screenshot?`<a class="profile-capture" href="${p.screenshot}" target="_blank" rel="noopener" aria-label="查看${escape(p.title)}主页截图"><img src="${p.thumbnail||p.screenshot}" alt="${escape(p.title)}小红书主页实景截图"></a><p class="capture-caption">PROFILE / 账号主页 · 点击查看全图</p>`:''}
+      ${p.image?`${p.group?.includes("账户运营")?`<div class="profile-capture proposal-capture"><img src="${p.image}" alt="${escape(p.title)}原稿封面"></div><p class="capture-caption">PROPOSAL / 策划案封面</p>`:`<img src="${p.image}" alt="${escape(p.imageAlt || (p.title+' '+(p.subtitle||'')+' 原稿封面'))}" loading="lazy">`}`:''}
       <p class="project-number">${String(i+1).padStart(2,'0')} / ${p.pdf?'PROJECT PROPOSAL':'SELECTED WORK'}</p>
       <h3>${escape(p.title)}</h3>${p.subtitle?`<p class="subtitle">${escape(p.subtitle)}</p>`:''}
       ${p.description?`<p class="description">${escape(p.description)}</p>`:''}${p.excerpt?`<div class="excerpt-label">${escape(p.excerptLabel)}</div><blockquote class="editorial-excerpt">${escape(p.excerpt)}</blockquote>`:''}${p.tags?`<p class="tags">${p.tags}</p>`:''}
-      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}" data-original="${p.original||p.pdf}" data-original-name="${escape(p.originalName||(p.title+'.pdf'))}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.original||p.pdf}" download="${escape(p.originalName||(p.title+'.pdf'))}">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}</div>
+      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}" data-original="${p.original||p.pdf}" data-original-name="${escape(p.originalName||(p.title+'.pdf'))}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.original||p.pdf}" download="${escape(p.originalName||(p.title+'.pdf'))}">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}${p.miniProgram?`<button type="button" data-mini-program="${escape(p.miniProgram)}">MINI PROGRAM ↗ <small>复制小程序口令</small></button><span class="copy-feedback" role="status"></span>`:''}</div>
     </article>`;
   }
   function renderCategory(id) {
@@ -107,6 +107,11 @@
       };
     });
     category.querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>openPDF(b.dataset.pdf,b.dataset.title,b));
+    category.querySelectorAll('[data-mini-program]').forEach(b=>b.onclick=async()=>{
+      const status=b.parentElement.querySelector('.copy-feedback');
+      try{await navigator.clipboard.writeText(b.dataset.miniProgram);status.textContent='已复制，请粘贴到微信打开';}
+      catch{status.textContent='请复制到微信打开：'+b.dataset.miniProgram;}
+    });
     return true;
   }
   // A continuous flexible sheet, pinned to its top edge. Reverse uses the same geometry.

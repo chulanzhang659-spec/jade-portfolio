@@ -23,14 +23,16 @@
           "description": "家居服品牌｜品牌整体运营。",
           "url": "https://xhslink.cn/o/AKoo5okHUYQ",
           "group": "品牌账户运营",
-          "screenshot": "social-elfu.jpg"
+          "screenshot": "social-elfu.jpg",
+          "thumbnail": "social-elfu-crop.jpg"
         },
         {
           "title": "LadyS Elite 慕裁",
           "description": "女士西装品牌｜品牌整体运营。",
           "url": "https://xhslink.cn/o/8p0kWZlNBiN",
           "group": "品牌账户运营",
-          "screenshot": "social-lady.jpg"
+          "screenshot": "social-lady.jpg",
+          "thumbnail": "social-lady-crop.jpg"
         },
         {
           "title": "个人博主项目",
@@ -38,7 +40,22 @@
           "url": "https://xhslink.cn/o/5LS7J8zegow",
           "group": "个人账户运营",
           "screenshot": "social-ann.jpg",
-          "subtitle": "Ann的安"
+          "subtitle": "Ann的安",
+          "thumbnail": "social-ann-crop.jpg"
+        },
+        {
+          "title": "MeanGirls Club",
+          "description": "时尚、穿搭、审美积累与 Lifestyle。",
+          "group": "个人账户运营",
+          "url": "https://xhslink.cn/m/1dx9LykcqHj",
+          "screenshot": "social-meangirls.jpg"
+        },
+        {
+          "title": "Jade Edit",
+          "description": "记录时尚、艺术、流行文化与生活的观察。",
+          "group": "个人账户运营",
+          "url": "https://xhslink.cn/m/AiMikZg5zsm",
+          "screenshot": "social-jade-edit.jpg"
         }
       ],
       "illustration": "operations-illustration.png",
@@ -185,13 +202,18 @@
           "title": "疏时",
           "description": "女装品牌文案、产品内容策划及小红书内容。",
           "url": "https://xhslink.cn/o/9FEuetal0eo",
-          "group": "方案"
+          "group": "方案",
+          "image": "planning-shushi.jpg",
+          "imageAlt": "疏时小红书主页"
         },
         {
           "title": "WANA TRY",
           "description": "女性时尚品牌集合与穿搭平台的产品文案。",
           "url": "https://xhslink.cn/o/lgdfS2DeTC",
-          "group": "方案"
+          "group": "方案",
+          "image": "planning-wana.jpg",
+          "imageAlt": "WANA TRY 小红书主页",
+          "miniProgram": "#小程序://WANATRY/dRKrSJ2X6Ozb0Gp"
         },
         {
           "title": "HOKA × 恩利",
@@ -219,12 +241,6 @@
           "tags": "影像方案 / 拍摄规划 / 整体执行",
           "pdf": "bosideng.pdf",
           "image": "bosideng.png"
-        },
-        {
-          "title": "IRO",
-          "description": "视频内容策划、分镜设计及采访方案的作品入口。",
-          "url": "https://xhslink.cn/o/1pGHmU9IGdH",
-          "group": "方案"
         },
         {
           "title": "SIXMODU × 蒋依依拍摄企划",
