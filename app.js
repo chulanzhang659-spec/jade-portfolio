@@ -19,7 +19,7 @@
     <aside class="contact" aria-label="联系方式">
       <img src="jade-original.jpg" class="portrait" alt="Jade 的原始肖像照片，仅作复古调色">
       <h3>CONTACT</h3><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
-      <dt>Phone</dt><dd><a href="tel:19145689058">19145689058</a></dd></dl>
+      <dt>Phone</dt><dd><a href="tel:+8619145689058">+86 191-4568-9058</a></dd></dl>
       <a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
       <a class="cv-download portfolio-download" href="jade-portfolio.pdf" download="JadeZheng_ portfolio.pdf"><span>PORTFOLIO ↓</span><small>下载完整作品集 · PDF</small></a>
     </aside>`;
