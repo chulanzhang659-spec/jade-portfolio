@@ -13,7 +13,7 @@
       <h2>${escape(c.title)}</h2><p class="cn-title">${c.zh}</p>
       <div class="intro"><p class="en-copy" data-copy="${escape(c.en)}"></p><p class="translation">${c.translation}</p></div>
       <p class="hint">${c.hint}</p>
-      <div class="illustration" style="background-position:${i*100/3}% 0" role="img" aria-label="${['书页与山茶花','复古电影摄影机','社交媒体内容与互动','时尚编辑剪报'][i]}"></div>
+      <div class="illustration" style="background-image:url('${c.illustration}');background-size:contain;background-repeat:no-repeat;background-position:center" role="img" aria-label="${escape(c.illustrationAlt)}"></div>
       <button class="read-link" data-open="${c.id}">翻阅专栏 →</button>
     </section>`).join('') + `
     <aside class="contact" aria-label="联系方式">
@@ -79,17 +79,15 @@
       <p class="project-number">${String(i+1).padStart(2,'0')} / ${p.pdf?'PROJECT PROPOSAL':'SELECTED WORK'}</p>
       <h3>${escape(p.title)}</h3>${p.subtitle?`<p class="subtitle">${escape(p.subtitle)}</p>`:''}
       ${p.description?`<p class="description">${escape(p.description)}</p>`:''}${p.excerpt?`<div class="excerpt-label">${escape(p.excerptLabel)}</div><blockquote class="editorial-excerpt">${escape(p.excerpt)}</blockquote>`:''}${p.tags?`<p class="tags">${p.tags}</p>`:''}
-      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.pdf}" download="${escape(p.title)}.pdf">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}</div>
+      <div class="actions">${p.pdf?`<button data-pdf="${p.pdf}" data-title="${escape(p.title)}" data-original="${p.original||p.pdf}" data-original-name="${escape(p.originalName||(p.title+'.pdf'))}">READ PDF ↗ <small>在线阅读</small></button><a href="${p.original||p.pdf}" download="${escape(p.originalName||(p.title+'.pdf'))}">DOWNLOAD ↓ <small>下载原稿</small></a>`:`<a href="${p.url}" target="_blank" rel="noopener noreferrer">READ MORE ↗ <small>阅读原文</small></a>`}</div>
     </article>`;
   }
   function renderCategory(id) {
     const c=cats.find(c=>c.id===id);if(!c)return false;
-    const featured=c.projects.filter(p=>p.pdf), related=c.projects.filter(p=>!p.pdf);
     category.dataset.category=id;
     category.innerHTML=`<header class="category-header"><span class="mini-brand">JADE’S PORTFOLIO</span><h1 tabindex="-1">${escape(c.title)}</h1><p>${c.zh}</p><div class="category-deck">${c.translation}</div></header>`+
-      `<div class="edition-projects">${(featured.length?featured:related).map((p,i)=>projectHTML(p,i)).join('')}</div>`+
-      (featured.length&&related.length?`<section class="related-strip"><h2 class="group-label">RELATED WORK<small>相关作品</small></h2>${related.map(p=>`<a href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${escape(p.title)}</strong><span>${escape(p.description)}</span><small>READ MORE ↗ / 阅读原文</small></a>`).join('')}</section>`:'')+
-      (c.archive?`<section class="archive-strip"><h2 class="group-label">THE ARCHIVE<small>微信作品</small></h2><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title} ↗</a>`).join('')}</div></section>`:'')+
+      c.groups.map(group=>`<section class="collection-group"><h2 class="group-label">${escape(group)}</h2><div class="edition-projects">${c.projects.filter(p=>p.group===group).map((p,i)=>projectHTML(p,i)).join('')}</div></section>`).join('')+
+      (c.archive?`<section class="archive-strip"><h2 class="group-label">THE ARCHIVE<small>${c.archiveZh||'微信作品'}</small></h2><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title} ↗</a>`).join('')}</div></section>`:'')+
       `<footer class="paper-footer"><span>JADE’S PORTFOLIO · ${escape(c.title.toUpperCase())}</span><span>03 / ${c.zh}</span></footer>`;
     category.querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>openPDF(b.dataset.pdf,b.dataset.title,b));
     return true;
@@ -187,7 +185,7 @@
   };
   function openPDF(url,title,trigger){
     lastFocus=trigger;$('#reader-title').textContent=title;
-    $('#reader-download').href=url;$('#reader-download').download=title+'.pdf';
+    $('#reader-download').href=trigger?.dataset.original||url;$('#reader-download').download=trigger?.dataset.originalName||(title+'.pdf');
     $('#reader-open').href=url;$('#pdf-frame').src=url+'#view=FitH';
     reader.showModal();document.body.style.overflow='hidden';$('#close-reader').focus();
   }
@@ -197,12 +195,12 @@
   reader.addEventListener('close',()=>{$('#pdf-frame').removeAttribute('src');document.body.style.removeProperty('overflow');lastFocus?.focus()});
   addEventListener('popstate',()=>{
     if(reader.open)reader.close();
-    const hash=location.hash.slice(1);
+    const hash=location.hash.slice(1)==='film'?'brand':location.hash.slice(1);
     const next=cats.some(c=>c.id===hash)?'category':hash==='directory'?'directory':'home';
     const rank={home:0,directory:1,category:2};
     flip(()=>{if(next==='category')renderCategory(hash);setView(next)},rank[next]<rank[view]);
   });
-  const hash=location.hash.slice(1);
+  const hash=location.hash.slice(1)==='film'?'brand':location.hash.slice(1);
   if(cats.some(c=>c.id===hash)){renderCategory(hash);setView('category')}
   else if(hash==='directory')setView('directory');
   else if(reduced){typed=maxCopy;paintCopy();}

@@ -290,3 +290,11 @@ body:not([data-view=home]) .project .profile-capture img{position:absolute;max-h
   .archive a{font-size:12px;padding:10px 4px}
 }
 @media(max-width:700px){body:not([data-view=home]) .column h2{box-shadow:none}}
+
+/* Three editorial departments, preserving the existing newspaper treatments. */
+@media(min-width:701px){.columns{grid-template-columns:repeat(3,minmax(0,1fr)) .495fr}}
+.collection-group{margin:0 0 28px;flex-shrink:0}
+.collection-group>.group-label{margin-bottom:20px}
+.collection-group .edition-projects{flex:none}
+.collection-group .project{min-width:0}
+@media(min-width:701px){.collection-group .project:nth-child(3n){border-right:0;padding-right:0}.category[data-category=fashion] .collection-group .project:nth-child(3n){border-right:2px solid var(--rule);padding-right:20px}.category[data-category=fashion] .collection-group .project:last-child{border-right:0;padding-right:0}.category[data-category=brand] .project h3{font-size:clamp(13px,1.3vw,20px)}}
