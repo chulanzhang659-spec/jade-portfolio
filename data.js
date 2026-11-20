@@ -1,71 +1,6 @@
 window.PORTFOLIO = {
   "categories": [
     {
-      "id": "social",
-      "title": "Operations",
-      "zh": "运营",
-      "en": "Brand accounts & personal expression.",
-      "translation": "品牌账号与个人表达",
-      "hint": "个人账户运营、品牌账户运营",
-      "projects": [
-        {
-          "title": "个人博主账号改善策划案",
-          "subtitle": "阿干干",
-          "description": "从主页观感、内容分布与拍摄剪辑出发，梳理个人定位、商业内容与账号发展路径。",
-          "group": "个人账户运营",
-          "pdf": "account-plan.pdf",
-          "original": "account-plan.pptx",
-          "originalName": "个人博主账号改善策划案.pptx",
-          "image": "account-plan.png"
-        },
-        {
-          "title": "ELFU",
-          "description": "家居服品牌｜品牌整体运营。",
-          "url": "https://xhslink.cn/o/AKoo5okHUYQ",
-          "group": "品牌账户运营",
-          "screenshot": "social-elfu.jpg",
-          "thumbnail": "social-elfu-crop.jpg"
-        },
-        {
-          "title": "LadyS Elite 慕裁",
-          "description": "女士西装品牌｜品牌整体运营。",
-          "url": "https://xhslink.cn/o/8p0kWZlNBiN",
-          "group": "品牌账户运营",
-          "screenshot": "social-lady.jpg",
-          "thumbnail": "social-lady-crop.jpg"
-        },
-        {
-          "title": "个人博主项目",
-          "description": "内容策划与账号运营。",
-          "url": "https://xhslink.cn/o/5LS7J8zegow",
-          "group": "个人账户运营",
-          "screenshot": "social-ann.jpg",
-          "subtitle": "Ann的安",
-          "thumbnail": "social-ann-crop.jpg"
-        },
-        {
-          "title": "MeanGirls Club",
-          "description": "时尚、穿搭、审美积累与 Lifestyle。",
-          "group": "个人账户运营",
-          "url": "https://xhslink.cn/m/1dx9LykcqHj",
-          "screenshot": "social-meangirls.jpg"
-        },
-        {
-          "title": "Jade Edit",
-          "description": "记录时尚、艺术、流行文化与生活的观察。",
-          "group": "个人账户运营",
-          "url": "https://xhslink.cn/m/AiMikZg5zsm",
-          "screenshot": "social-jade-edit.jpg"
-        }
-      ],
-      "illustration": "operations-illustration.webp",
-      "illustrationAlt": "社交账号、内容日历与互动手绘",
-      "groups": [
-        "个人账户运营",
-        "品牌账户运营"
-      ]
-    },
-    {
       "id": "fashion",
       "title": "Editorial",
       "zh": "编辑",
@@ -288,6 +223,71 @@ window.PORTFOLIO = {
         "方案",
         "脚本",
         "设计"
+      ]
+    },
+    {
+      "id": "social",
+      "title": "Operations",
+      "zh": "运营",
+      "en": "Brand accounts & personal expression.",
+      "translation": "品牌账号与个人表达",
+      "hint": "个人账户运营、品牌账户运营",
+      "projects": [
+        {
+          "title": "个人博主账号改善策划案",
+          "subtitle": "阿干干",
+          "description": "从主页观感、内容分布与拍摄剪辑出发，梳理个人定位、商业内容与账号发展路径。",
+          "group": "个人账户运营",
+          "pdf": "account-plan.pdf",
+          "original": "account-plan.pptx",
+          "originalName": "个人博主账号改善策划案.pptx",
+          "image": "account-plan.png"
+        },
+        {
+          "title": "ELFU",
+          "description": "家居服品牌｜品牌整体运营。",
+          "url": "https://xhslink.cn/o/AKoo5okHUYQ",
+          "group": "品牌账户运营",
+          "screenshot": "social-elfu.jpg",
+          "thumbnail": "social-elfu-crop.jpg"
+        },
+        {
+          "title": "LadyS Elite 慕裁",
+          "description": "女士西装品牌｜品牌整体运营。",
+          "url": "https://xhslink.cn/o/8p0kWZlNBiN",
+          "group": "品牌账户运营",
+          "screenshot": "social-lady.jpg",
+          "thumbnail": "social-lady-crop.jpg"
+        },
+        {
+          "title": "个人博主项目",
+          "description": "内容策划与账号运营。",
+          "url": "https://xhslink.cn/o/5LS7J8zegow",
+          "group": "个人账户运营",
+          "screenshot": "social-ann.jpg",
+          "subtitle": "Ann的安",
+          "thumbnail": "social-ann-crop.jpg"
+        },
+        {
+          "title": "MeanGirls Club",
+          "description": "时尚、穿搭、审美积累与 Lifestyle。",
+          "group": "个人账户运营",
+          "url": "https://xhslink.cn/m/1dx9LykcqHj",
+          "screenshot": "social-meangirls.jpg"
+        },
+        {
+          "title": "Jade Edit",
+          "description": "记录时尚、艺术、流行文化与生活的观察。",
+          "group": "个人账户运营",
+          "url": "https://xhslink.cn/m/AiMikZg5zsm",
+          "screenshot": "social-jade-edit.jpg"
+        }
+      ],
+      "illustration": "operations-illustration.webp",
+      "illustrationAlt": "社交账号、内容日历与互动手绘",
+      "groups": [
+        "个人账户运营",
+        "品牌账户运营"
       ]
     }
   ]
