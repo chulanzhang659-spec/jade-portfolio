@@ -16,13 +16,31 @@
       <div class="illustration" style="background-image:url('${c.illustration}');background-size:contain;background-repeat:no-repeat;background-position:center" role="img" aria-label="${escape(c.illustrationAlt)}"></div>
       <button class="read-link" data-open="${c.id}">翻阅专栏 →</button>
     </section>`).join('') + `
-    <aside class="contact" aria-label="联系方式">
+    <aside class="contact" aria-label="联系方式"><div class="contact-inner">
       <img src="jade-original.jpg" class="portrait" alt="Jade 的原始肖像照片，仅作复古调色">
       <h3>CONTACT</h3><p class="contact-bio">Jade，服装设计出身的时装编辑、创意策划与品牌顾问，拥有米兰马兰欧尼服装设计硕士背景。工作横跨时尚、内容与品牌，从编辑选题、脚本与影像策划，到品牌叙事与服装设计。关注服装、图像与文字如何塑造身份与感受，并将细微的观察转化为清晰、有辨识度的表达。</p><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
       <dt>Phone</dt><dd><a href="tel:+8619145689058">+86 191-4568-9058</a></dd></dl>
       <div class="contact-downloads"><a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
       <a class="cv-download portfolio-download" href="jade-portfolio.pdf" download="JadeZheng_ portfolio.pdf"><span>PORTFOLIO ↓</span><small>下载完整作品集 · PDF</small></a></div>
-    </aside>`;
+    </div></aside>`;
+  // Fit the complete contact column inside its ruled area, including short windows.
+  const contact = paper.querySelector('.contact');
+  const contactInner = contact.querySelector('.contact-inner');
+  function fitContact() {
+    contactInner.style.removeProperty('--contact-scale');
+    if (innerWidth <= 700 || !contact.clientHeight) return;
+    const available = contact.clientHeight - 3;
+    let scale = 1;
+    for (let i = 0; i < 5; i++) {
+      const height = contactInner.getBoundingClientRect().height;
+      if (height <= available + .5) break;
+      scale *= available / height;
+      contactInner.style.setProperty('--contact-scale', String(scale));
+    }
+  }
+  new ResizeObserver(fitContact).observe(contact);
+  document.fonts.ready.then(fitContact);
+  contactInner.querySelector('img').addEventListener('load', fitContact);
   const copies = [...document.querySelectorAll('.en-copy')];
   const maxCopy = copies.reduce((n,e) => n + e.dataset.copy.length, 0);
   function paintCopy() {

@@ -58,7 +58,7 @@ window.PORTFOLIO = {
           "screenshot": "social-jade-edit.jpg"
         }
       ],
-      "illustration": "operations-illustration.png",
+      "illustration": "operations-illustration.webp",
       "illustrationAlt": "社交账号、内容日历与互动手绘",
       "groups": [
         "个人账户运营",
@@ -166,7 +166,7 @@ window.PORTFOLIO = {
           "image": "wechat-10.jpg"
         }
       ],
-      "illustration": "editorial-illustration.png",
+      "illustration": "editorial-illustration.webp",
       "illustrationAlt": "时尚杂志、胶片与钢笔手绘",
       "groups": [
         "时尚视频"
@@ -282,7 +282,7 @@ window.PORTFOLIO = {
           "tags": "服装设计 / 系列开发 / 工艺图"
         }
       ],
-      "illustration": "planning-illustration.png",
+      "illustration": "planning-illustration.webp",
       "illustrationAlt": "服装人台、设计草图与分镜手绘",
       "groups": [
         "方案",

@@ -52,9 +52,9 @@ window.createKeyboardSurface=(image,keys,reduced)=>{
   function wake(){if(ready&&!raf){last=performance.now();raf=requestAnimationFrame(frame)}}
   const observer=new MutationObserver(wake);
   keys.forEach(key=>observer.observe(key,{attributes:true,attributeFilter:['class']}));
-  plate.onload=()=>{
+  plate.src=image.src.replace(/home-reference\.webp(?:\?.*)?$/,'keyboard-clean.webp');
+  Promise.all([image.decode(),plate.decode()]).then(()=>{
     canvas.id=image.id;canvas.setAttribute('role','img');canvas.setAttribute('aria-label',image.alt);
     image.replaceWith(canvas);ready=true;wake();
-  };
-  plate.src=image.src.replace(/home-reference\.png(?:\?.*)?$/,'keyboard-clean.png');
+  }).catch(()=>{ /* Keep the original image visible if either asset cannot decode. */ });
 };

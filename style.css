@@ -1,4 +1,4 @@
-@font-face{font-family:Zhuque;src:url('zh.ttf') format('truetype');font-display:swap}
+@font-face{font-family:Zhuque;src:url('zh-subset.woff2') format('woff2');font-display:swap}
 :root{--paper:#f5f1e8;--ink:#302f2b;--muted:#78756e;--rule:#a19c90;--mono:"Courier New",Courier,monospace;--cn:Zhuque,"SimSun",serif}
 *{box-sizing:border-box}html{background:#eeeae1;color:var(--ink);scroll-behavior:smooth}body{margin:0;font-family:var(--mono);background:radial-gradient(ellipse at 50% 20%,#faf9f5,#eae6dd 90%);min-height:100svh}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:2px solid #81765c;outline-offset:6px}button:hover,a:hover{color:#8c7146}[hidden]{display:none!important}
 .toolbar{position:absolute;z-index:20;inset:20px 3vw auto;display:flex;justify-content:space-between;pointer-events:none;font:12px var(--mono);letter-spacing:.1em}.toolbar>*{pointer-events:auto}.toolbar #back{font-family:var(--cn);font-size:14px}#sound{margin-left:auto;font-size:10px}
@@ -91,7 +91,7 @@ clip-path:polygon(0% 100%,0% 47%,2.5% 46%,3.7% 34%,4.9% 30.5%,6.5% 30.5%,6.8% 34
 .print-row span{white-space:nowrap}.print-cn{font:14px/28px var(--cn)}.print-wide{left:0;right:0;display:block;text-align:center;font-size:15px;letter-spacing:.08em}.print-wide>.print-cell:empty{display:none}
 .home-original-portrait{position:absolute;left:1015px;top:155px;width:148px;height:190px;object-fit:cover;filter:grayscale(1) sepia(.22) contrast(.92);opacity:0;transition:opacity .5s;pointer-events:none}
 #home-artboard #keys{position:absolute;inset:0;z-index:4;pointer-events:none}
-.reference-key{position:absolute;border:0;padding:0;border-radius:50%;background-image:url('home-reference.png');background-size:1672px 941px;background-repeat:no-repeat;opacity:0;pointer-events:auto;cursor:pointer;transform:none;outline:none!important}
+.reference-key{position:absolute;border:0;padding:0;border-radius:50%;background-image:url('home-reference.webp');background-size:1672px 941px;background-repeat:no-repeat;opacity:0;pointer-events:auto;cursor:pointer;transform:none;outline:none!important}
 .reference-key{opacity:1;background:none;border-radius:46%;transition:none}
 .reference-key::after{content:none}
 body[data-view=home] #stage{visibility:hidden;pointer-events:none;height:100svh;min-height:0;padding:0}
@@ -333,3 +333,22 @@ body:not([data-view=home]) .project .proposal-capture img{object-fit:contain}
 .archive a{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:12px}
 .archive-cover{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;filter:saturate(.72) contrast(.95)}
 .archive a span{display:block}
+
+/* The footer rule is a hard layout boundary, not a line drawn over the content. */
+@media(min-width:701px){
+  :is(#paper-directory,.directory-clone) .columns{grid-template-rows:minmax(0,1fr);overflow:hidden}
+  :is(#paper-directory,.directory-clone) .column{min-height:0;overflow:hidden}
+  :is(#paper-directory,.directory-clone) .column>:not(.illustration){flex-shrink:0}
+  :is(#paper-directory,.directory-clone) .illustration{flex:1 1 0;min-height:0;width:100%;aspect-ratio:auto;margin:8px 0}
+  :is(#paper-directory,.directory-clone) .contact{min-height:0;overflow:hidden}
+  .contact-inner{display:flow-root;zoom:var(--contact-scale,1);width:100%}
+}
+@media(min-width:701px) and (max-width:1100px){
+  .columns{grid-template-columns:repeat(3,minmax(0,1fr)) .8fr}
+  .column{padding-left:10px;padding-right:10px}
+  .contact{padding-left:10px}
+}
+@media(max-width:700px){
+  .contact-inner{display:contents}
+  .column .illustration{width:100%;max-width:100%}
+}
