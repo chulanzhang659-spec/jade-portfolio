@@ -85,10 +85,27 @@
   function renderCategory(id) {
     const c=cats.find(c=>c.id===id);if(!c)return false;
     category.dataset.category=id;
+    const tabs=[...c.groups,...(c.archive?[c.archiveZh||'微信公众号图文']:[])];
+    const panelId=i=>`category-${id}-panel-${i}`;
+    const tabId=i=>`category-${id}-tab-${i}`;
     category.innerHTML=`<header class="category-header"><span class="mini-brand">JADE’S PORTFOLIO</span><h1 tabindex="-1">${escape(c.title)}</h1><p>${c.zh}</p><div class="category-deck">${c.translation}</div></header>`+
-      c.groups.map(group=>`<section class="collection-group"><h2 class="group-label">${escape(group)}</h2><div class="edition-projects">${c.projects.filter(p=>p.group===group).map((p,i)=>projectHTML(p,i)).join('')}</div></section>`).join('')+
-      (c.archive?`<section class="archive-strip"><h2 class="group-label">THE ARCHIVE<small>${c.archiveZh||'微信作品'}</small></h2><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title} ↗</a>`).join('')}</div></section>`:'')+
+      `<nav class="category-tabs" role="tablist" aria-label="${escape(c.zh)}分类">${tabs.map((label,i)=>`<button class="group-label category-tab" id="${tabId(i)}" role="tab" aria-selected="${i===0}" aria-controls="${panelId(i)}" tabindex="${i===0?0:-1}" data-tab="${i}">${escape(label)}</button>`).join('')}</nav>`+
+      c.groups.map((group,i)=>`<section class="collection-group" id="${panelId(i)}" role="tabpanel" aria-labelledby="${tabId(i)}" ${i?'hidden':''}><div class="edition-projects">${c.projects.filter(p=>p.group===group).map((p,i)=>projectHTML(p,i)).join('')}</div></section>`).join('')+
+      (c.archive?`<section class="archive-strip archive-panel" id="${panelId(c.groups.length)}" role="tabpanel" aria-labelledby="${tabId(c.groups.length)}" hidden><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${escape(a.title)} ↗</a>`).join('')}</div></section>`:'')+
       `<footer class="paper-footer"><span>JADE’S PORTFOLIO · ${escape(c.title.toUpperCase())}</span><span>03 / ${c.zh}</span></footer>`;
+    const buttons=[...category.querySelectorAll('[role="tab"]')];
+    const panels=[...category.querySelectorAll('[role="tabpanel"]')];
+    function selectTab(index,focus=false){
+      buttons.forEach((button,i)=>{button.setAttribute('aria-selected',String(i===index));button.tabIndex=i===index?0:-1;panels[i].hidden=i!==index});
+      if(focus)buttons[index].focus();
+    }
+    buttons.forEach((button,i)=>{
+      button.onclick=()=>selectTab(i);
+      button.onkeydown=e=>{
+        const next=e.key==='ArrowRight'?(i+1)%buttons.length:e.key==='ArrowLeft'?(i+buttons.length-1)%buttons.length:e.key==='Home'?0:e.key==='End'?buttons.length-1:-1;
+        if(next>=0){e.preventDefault();selectTab(next,true)}
+      };
+    });
     category.querySelectorAll('[data-pdf]').forEach(b=>b.onclick=()=>openPDF(b.dataset.pdf,b.dataset.title,b));
     return true;
   }

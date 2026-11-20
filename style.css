@@ -298,3 +298,11 @@ body:not([data-view=home]) .project .profile-capture img{position:absolute;max-h
 .collection-group .edition-projects{flex:none}
 .collection-group .project{min-width:0}
 @media(min-width:701px){.collection-group .project:nth-child(3n){border-right:0;padding-right:0}.category[data-category=fashion] .collection-group .project:nth-child(3n){border-right:2px solid var(--rule);padding-right:20px}.category[data-category=fashion] .collection-group .project:last-child{border-right:0;padding-right:0}.category[data-category=brand] .project h3{font-size:clamp(13px,1.3vw,20px)}}
+
+/* Secondary categories share the existing newspaper label typography. */
+.category-tabs{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 24px;flex-shrink:0;border-bottom:1px solid var(--rule);padding-bottom:12px}
+.category-tabs .category-tab{margin:0;background:transparent;cursor:pointer}
+.category-tab[aria-selected="true"]{border-bottom:3px solid var(--ink)}
+.category-tabs .category-tab:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.category .archive-panel{border-top:0;margin-top:0;padding-top:0}
+@media(max-width:700px){.category-tabs{gap:10px}.category-tabs .category-tab{min-height:44px}.archive-panel .archive{grid-template-columns:1fr}}

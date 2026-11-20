@@ -54,7 +54,7 @@ window.PORTFOLIO = {
       "zh": "编辑",
       "en": "Visual stories at the intersection of style and culture.",
       "translation": "在风格与文化的交汇处，讲述视觉故事。",
-      "hint": "时尚视频、时尚图文",
+      "hint": "时尚视频、微信公众号图文",
       "projects": [
         {
           "title": "GUCCI拍豪门大戏，38位戏精上演百年风云",
@@ -144,7 +144,7 @@ window.PORTFOLIO = {
       "groups": [
         "时尚视频"
       ],
-      "archiveZh": "时尚图文"
+      "archiveZh": "微信公众号图文"
     },
     {
       "id": "brand",
