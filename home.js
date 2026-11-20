@@ -4,23 +4,17 @@ window.createJadeHome = ({onOpen,onTick,reduced}) => {
   const keys=document.querySelector('#keys');
   const mobilePrint=document.createElement('div');
   mobilePrint.className='home-mobile-print';
-  mobilePrint.innerHTML='<p class="mobile-edition">SELECTED WORK · 2026</p><div><p>BRAND STORIES<small>品牌故事</small></p><p>FILM & INTERVIEWS<small>影像与访谈</small></p><p>SOCIAL & CONTENT<small>账号运营</small></p><p>FASHION EDITORIAL<small>时尚编辑</small></p></div><p class="mobile-open">OPEN THE EDITION →<small>轻触纸张，阅读作品</small></p>';
+  mobilePrint.innerHTML='<p>FASHION EDITOR / CREATIVE STRATEGIST / BRAND CONSULTANT<small>时装编辑 / 创意策划 / 品牌顾问</small></p><img class="home-mobile-portrait" src="jade-original.jpg" alt="Jade 肖像">';
   stock.append(mobilePrint);
   const rows=[
-    ['OPEN THE EDITION →','','',''],
-    ['BRAND STORIES','FILM & INTERVIEWS','SOCIAL & CONTENT','FASHION EDITORIAL'],
-    ['品牌故事','影像与访谈','账号运营','时尚编辑'],
-    ['Narratives for','Conversations,','Brand accounts &','Visual stories at'],
-    ['people, places','short films and','personal expression.','the intersection'],
-    ['and products.','creative documentaries.','','of style and culture.'],
-    ['为人物、地方与产品','对话、短片与创意纪录。','品牌账号与个人表达','在风格与文化的交汇处，'],
-    ['讲述故事。','','','讲述视觉故事。'],
-    ['','','',''],
-    ['CLICK THE PAPER TO EXPLORE','','','']
+    [''],
+    ['FASHION EDITOR / CREATIVE STRATEGIST / BRAND CONSULTANT'],
+    ['时装编辑 / 创意策划 / 品牌顾问'],
+    [''],[''],[''],[''],[''],[''],['']
   ];
   const rowEls=rows.map((cells,i)=>{
     const row=document.createElement('div');row.className='print-row'+([2,6,7].includes(i)?' print-cn':'');
-    if(i===0||i===9)row.classList.add('print-wide');
+    row.classList.add('identity-row');
     row.style.top=(90+i*28)+'px';
     cells.forEach((t,column)=>{
       const cell=document.createElement('span');cell.className='print-cell';
@@ -61,7 +55,7 @@ window.createJadeHome = ({onOpen,onTick,reduced}) => {
     const mobile=innerWidth<=700;
     const scale=mobile?Math.max(innerWidth/800,Math.min(innerHeight*.65/941,.68)):Math.max(innerWidth/1672,innerHeight/941);
     board.style.setProperty('--scene-scale',scale);
-    stock.style.setProperty('--title-size',mobile?'32px':'36px');
+    stock.style.setProperty('--title-size',mobile?'35px':'44px');
   }
   size();addEventListener('resize',size);
   function render(elapsed){
@@ -69,8 +63,9 @@ window.createJadeHome = ({onOpen,onTick,reduced}) => {
     stock.style.setProperty('--paper-feed',s.feed+'px');
     stock.dataset.line=String(s.row);
     mobilePrint.style.opacity=s.row>=2?'1':'0';
+    document.querySelector('.home-original-portrait').style.opacity=s.row>=4?'1':'0';
     mobilePrint.querySelectorAll('div p').forEach((p,i)=>{p.style.opacity=s.row>=2+i*2?'1':'0'});
-    mobilePrint.querySelector('.mobile-open').style.opacity=s.row>=9?'1':'0';
+
     rowEls.forEach((el,i)=>{
       const p=i<s.row?1:i===s.row?s.progress:0;
       const count=p===1?999:Math.floor(p*(i===0||i===9?32:104));
@@ -79,7 +74,7 @@ window.createJadeHome = ({onOpen,onTick,reduced}) => {
         el.querySelectorAll('[data-unit]').forEach(g=>{g.style.visibility=Number(g.dataset.unit)<count?'visible':'hidden'});
       }
     });
-    document.querySelector('.home-original-portrait').style.opacity=s.row>=4?'1':'0';
+
     if(s.row<rows.length&&s.progress>0&&s.progress<1){
       const text=rows[s.row].join('  '),n=Math.floor(s.progress*text.length);
       const signature=s.row*1000+n;

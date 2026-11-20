@@ -18,10 +18,10 @@
     </section>`).join('') + `
     <aside class="contact" aria-label="联系方式">
       <img src="jade-original.jpg" class="portrait" alt="Jade 的原始肖像照片，仅作复古调色">
-      <h3>CONTACT</h3><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
+      <h3>CONTACT</h3><p class="contact-bio">Jade，服装设计出身的时装编辑、创意策划与品牌顾问，拥有米兰马兰欧尼服装设计硕士背景。工作横跨时尚、内容与品牌，从编辑选题、脚本与影像策划，到品牌叙事与服装设计。关注服装、图像与文字如何塑造身份与感受，并将细微的观察转化为清晰、有辨识度的表达。</p><dl><dt>Email</dt><dd><a href="mailto:z603117521@gmail.com">z603117521@gmail.com</a></dd>
       <dt>Phone</dt><dd><a href="tel:+8619145689058">+86 191-4568-9058</a></dd></dl>
-      <a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
-      <a class="cv-download portfolio-download" href="jade-portfolio.pdf" download="JadeZheng_ portfolio.pdf"><span>PORTFOLIO ↓</span><small>下载完整作品集 · PDF</small></a>
+      <div class="contact-downloads"><a class="cv-download" href="jade-cv.pdf" download="郑玉婷jade-CV.pdf"><span>DOWNLOAD CV ↓</span><small>下载简历 · PDF</small></a>
+      <a class="cv-download portfolio-download" href="jade-portfolio.pdf" download="JadeZheng_ portfolio.pdf"><span>PORTFOLIO ↓</span><small>下载完整作品集 · PDF</small></a></div>
     </aside>`;
   const copies = [...document.querySelectorAll('.en-copy')];
   const maxCopy = copies.reduce((n,e) => n + e.dataset.copy.length, 0);
@@ -91,7 +91,7 @@
     category.innerHTML=`<header class="category-header"><span class="mini-brand">JADE’S PORTFOLIO</span><h1 tabindex="-1">${escape(c.title)}</h1><p>${c.zh}</p><div class="category-deck">${c.translation}</div></header>`+
       `<nav class="category-tabs" role="tablist" aria-label="${escape(c.zh)}分类">${tabs.map((label,i)=>`<button class="group-label category-tab" id="${tabId(i)}" role="tab" aria-selected="${i===0}" aria-controls="${panelId(i)}" tabindex="${i===0?0:-1}" data-tab="${i}">${escape(label)}</button>`).join('')}</nav>`+
       c.groups.map((group,i)=>`<section class="collection-group" id="${panelId(i)}" role="tabpanel" aria-labelledby="${tabId(i)}" ${i?'hidden':''}><div class="edition-projects">${c.projects.filter(p=>p.group===group).map((p,i)=>projectHTML(p,i)).join('')}</div></section>`).join('')+
-      (c.archive?`<section class="archive-strip archive-panel" id="${panelId(c.groups.length)}" role="tabpanel" aria-labelledby="${tabId(c.groups.length)}" hidden><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${escape(a.title)} ↗</a>`).join('')}</div></section>`:'')+
+      (c.archive?`<section class="archive-strip archive-panel" id="${panelId(c.groups.length)}" role="tabpanel" aria-labelledby="${tabId(c.groups.length)}" hidden><div class="archive">${c.archive.map(a=>`<a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.image?`<img class="archive-cover" src="${a.image}" alt="${escape(a.title)}封面" loading="eager">`:""}<span>${escape(a.title)} ↗</span></a>`).join('')}</div></section>`:'')+
       `<footer class="paper-footer"><span>JADE’S PORTFOLIO · ${escape(c.title.toUpperCase())}</span><span>03 / ${c.zh}</span></footer>`;
     const buttons=[...category.querySelectorAll('[role="tab"]')];
     const panels=[...category.querySelectorAll('[role="tabpanel"]')];

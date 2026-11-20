@@ -117,43 +117,53 @@ window.PORTFOLIO = {
       "archive": [
         {
           "title": "神颜天才，男女同权鼻祖丨尊重女性，推动女性进步的男人最有魅力！",
-          "url": "https://mp.weixin.qq.com/s/_ZXbtuIQXTY_sVYR4Of7zg"
+          "url": "https://mp.weixin.qq.com/s/_ZXbtuIQXTY_sVYR4Of7zg",
+          "image": "wechat-01.jpg"
         },
         {
           "title": "最火时装周盘点：谁是下一个时尚尖子生？",
-          "url": "https://mp.weixin.qq.com/s/V2J23TUm0CPF8cP_COggaA"
+          "url": "https://mp.weixin.qq.com/s/V2J23TUm0CPF8cP_COggaA",
+          "image": "wechat-02.jpg"
         },
         {
           "title": "地表最强高富帅｜都是顶级豪门，择偶观差距那么大？",
-          "url": "https://mp.weixin.qq.com/s/aDEMLRdjvTRewDxih5TUPw"
+          "url": "https://mp.weixin.qq.com/s/aDEMLRdjvTRewDxih5TUPw",
+          "image": "wechat-03.jpg"
         },
         {
           "title": "都2023年了，Y2K风格怎么还这么迷人？",
-          "url": "https://mp.weixin.qq.com/s/uAIlTLv4WqCBe4eC8HQbdA"
+          "url": "https://mp.weixin.qq.com/s/uAIlTLv4WqCBe4eC8HQbdA",
+          "image": "wechat-04.jpg"
         },
         {
           "title": "王菲、张曼玉、郑秀文……当年的天后们穿平价裙子也能艳压",
-          "url": "https://mp.weixin.qq.com/s/laGz80w_GYcMkfNyssELYg"
+          "url": "https://mp.weixin.qq.com/s/laGz80w_GYcMkfNyssELYg",
+          "image": "wechat-05.jpg"
         },
         {
           "title": "为啥文淇、倪妮、IU都穿同一件肚兜？谁赢了？",
-          "url": "https://mp.weixin.qq.com/s/IVediD1qAXPGo3grtsSdkg"
+          "url": "https://mp.weixin.qq.com/s/IVediD1qAXPGo3grtsSdkg",
+          "image": "wechat-06.jpg"
         },
         {
           "title": "我正常吗？比起霸总帅哥，我更想嫁雷佳音、白客这样的窝囊废",
-          "url": "https://mp.weixin.qq.com/s/c2CiK7_x0kuaQMm_dt_wNQ"
+          "url": "https://mp.weixin.qq.com/s/c2CiK7_x0kuaQMm_dt_wNQ",
+          "image": "wechat-07.jpg"
         },
         {
           "title": "别人塌房他们塌床，钟楚曦候雯元在谈一种很新的恋爱",
-          "url": "https://mp.weixin.qq.com/s/IIbUiyglH4Ibkf0H4xYJsw"
+          "url": "https://mp.weixin.qq.com/s/IIbUiyglH4Ibkf0H4xYJsw",
+          "image": "wechat-08.jpg"
         },
         {
           "title": "我、郭敬明、章小蕙、晚晚，去面了《Vogue》副主编",
-          "url": "https://mp.weixin.qq.com/s/v3a01ci0IDvOzQ9G4U9NDw"
+          "url": "https://mp.weixin.qq.com/s/v3a01ci0IDvOzQ9G4U9NDw",
+          "image": "wechat-09.jpg"
         },
         {
           "title": "暗夜蝙蝠、扑棱蛾子、棉被成精……内娱红毯已经癫成这样了",
-          "url": "https://mp.weixin.qq.com/s/tbRfhlWSHpGoseHbnyjfug"
+          "url": "https://mp.weixin.qq.com/s/tbRfhlWSHpGoseHbnyjfug",
+          "image": "wechat-10.jpg"
         }
       ],
       "illustration": "editorial-illustration.png",
